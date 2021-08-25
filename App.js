@@ -7,6 +7,7 @@ import { StatusBar } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from 'expo-app-loading';
 import Home from "./src/screens/home";
+import ForgotPassword from "./src/screens/forgotPassword";
 
 export default class App extends React.Component {
   state = { isFontLoaded: false };
@@ -33,6 +34,7 @@ export default class App extends React.Component {
                 }}
             >
               <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>

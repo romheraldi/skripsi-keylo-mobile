@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Text, View, StyleSheet, Image, TextInput, TouchableOpacity, ScrollView} from "react-native";
+import { AntDesign } from '@expo/vector-icons'; 
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -10,12 +11,11 @@ function mapStateToProps(state) {
     return {};
 }
 
-class Home extends Component {
+class ForgotPassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
-            password: "",
+            email: ""
         };
     }
     onChangeHandler = (name) => {
@@ -28,17 +28,13 @@ class Home extends Component {
         return (
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={styles.root}>
-                    <Image
-                        source={require("../images/logo.png")}
-                        resizeMode={"contain"}
-                        style={{ width: wp(25)}}
-                    />
+                    <AntDesign name="arrowleft" size={24} color="black" onPress={() => this.props.navigation.goBack()} />
                     <View style={styles.textSection}>
                         <Text style={styles.bigText}>
-                            Masuk Akun
+                            Pulihkan kata sandi
                         </Text>
                         <Text style={styles.smallText}>
-                            Dapatkan kuncimu!
+                        Tautan pemulihan akan dikirimkan ke email mu
                         </Text>
                     </View>
                     <View style={styles.formSection}>
@@ -58,37 +54,11 @@ class Home extends Component {
                             />
                         </View>
                         <View style={{marginTop: wp(5)}}>
-                            <Text style={styles.formLabel}>
-                                Kata Sandi
-                            </Text>
-                            <TextInput
-                                style={styles.formInput}
-                                maxLength={40}
-                                placeholder="Kata Sandi"
-                                clearButtonMode="while-editing"
-                                onChangeText={this.onChangeHandler("password")}
-                                value={this.state.password}
-                                textContentType={"password"}
-                                secureTextEntry={true}
-                                autoCapitalize="none"
-                            />
-                        </View>
-                        <View style={{marginTop: wp(5)}}>
-                            <Text style={styles.forgotPassword}>
-                                Lupa kata sandi?
-                                <Text 
-                                    style={styles.linkForgotPassword}
-                                    onPress={() => this.props.navigation.navigate("ForgotPassword")}>
-                                    {" "}Atur ulang.
-                                </Text>
-                            </Text>
-                        </View>
-                        <View style={{marginTop: wp(5)}}>
                             <TouchableOpacity
                                 style={styles.button}
-                                onPress={() => this.props.navigation.navigate("Home")}
+                                onPress={() => this.props.navigation.navigate("ForgotPassword")}
                             >
-                                <Text style={styles.buttonText}>Masuk Akun</Text>
+                                <Text style={styles.buttonText}>Kirim</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -162,4 +132,4 @@ const styles = StyleSheet.create({
 
 export default connect(
     mapStateToProps,
-)(Home);
+)(ForgotPassword);

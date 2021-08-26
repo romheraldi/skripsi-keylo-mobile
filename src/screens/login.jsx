@@ -77,7 +77,7 @@ class Login extends Component {
                                 Lupa kata sandi?
                                 <Text 
                                     style={styles.linkForgotPassword}
-                                    onPress={async() => await this.props.navigation.navigate("ForgotPassword")}>
+                                    onPress={() => this.props.navigation.navigate("ForgotPassword")}>
                                     {" "}Atur ulang.
                                 </Text>
                             </Text>

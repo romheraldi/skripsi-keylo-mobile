@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Text, View, StyleSheet, Image, TextInput, TouchableOpacity, ScrollView} from "react-native";
-import { AntDesign } from '@expo/vector-icons'; 
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
   } from "react-native-responsive-screen";
+import { AsyncStorage } from 'react-native';
 
 function mapStateToProps(state) {
     return {};
 }
 
-class ForgotPassword extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: ""
+            email: "",
+            password: "",
         };
     }
     onChangeHandler = (name) => {
@@ -28,13 +29,17 @@ class ForgotPassword extends Component {
         return (
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={styles.root}>
-                    <AntDesign name="arrowleft" size={24} color="black" onPress={() => this.props.navigation.goBack()} />
+                    <Image
+                        source={require("../images/logo.png")}
+                        resizeMode={"contain"}
+                        style={{ width: wp(25)}}
+                    />
                     <View style={styles.textSection}>
                         <Text style={styles.bigText}>
-                            Pulihkan kata sandi
+                            Masuk Akun
                         </Text>
                         <Text style={styles.smallText}>
-                        Tautan pemulihan akan dikirimkan ke email mu
+                            Dapatkan kuncimu!
                         </Text>
                     </View>
                     <View style={styles.formSection}>
@@ -53,11 +58,36 @@ class ForgotPassword extends Component {
                             />
                         </View>
                         <View style={{marginTop: wp(5)}}>
+                            <Text style={styles.formLabel}>
+                                Kata Sandi
+                            </Text>
+                            <TextInput
+                                style={styles.formInput}
+                                maxLength={40}
+                                placeholder="Kata Sandi"
+                                clearButtonMode="while-editing"
+                                onChangeText={this.onChangeHandler("password")}
+                                value={this.state.password}
+                                secureTextEntry={true}
+                                autoCapitalize="none"
+                            />
+                        </View>
+                        <View style={{marginTop: wp(5)}}>
+                            <Text style={styles.forgotPassword}>
+                                Lupa kata sandi?
+                                <Text 
+                                    style={styles.linkForgotPassword}
+                                    onPress={async() => await this.props.navigation.navigate("ForgotPassword")}>
+                                    {" "}Atur ulang.
+                                </Text>
+                            </Text>
+                        </View>
+                        <View style={{marginTop: wp(5)}}>
                             <TouchableOpacity
                                 style={styles.button}
-                                onPress={() => this.props.navigation.navigate("ForgotPassword")}
+                                onPress={() => AsyncStorage.setItem("LOGIN_TOKEN", "ALDI")}
                             >
-                                <Text style={styles.buttonText}>Kirim</Text>
+                                <Text style={styles.buttonText}>Masuk Akun</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -131,4 +161,4 @@ const styles = StyleSheet.create({
 
 export default connect(
     mapStateToProps,
-)(ForgotPassword);
+)(Login);

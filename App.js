@@ -4,13 +4,17 @@ import store from "./src/redux/store";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "react-native";
+import { AsyncStorage } from "react-native";
 import * as Font from "expo-font";
-import AppLoading from 'expo-app-loading';
-import Home from "./src/screens/home";
+import AppLoading from "expo-app-loading";
+import Login from "./src/screens/login";
 import ForgotPassword from "./src/screens/forgotPassword";
+import Tabs from './src/navigation/tabs'
 
 export default class App extends React.Component {
-  state = { isFontLoaded: false };
+  state = {
+    isFontLoaded: false,
+  };
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -23,26 +27,29 @@ export default class App extends React.Component {
   render() {
     const Stack = createStackNavigator();
     return this.state.isFontLoaded === true ? (
-        <Provider store={store}>
-          <NavigationContainer>
-            <StatusBar hidden />
-            <Stack.Navigator
-                initialRouteName="Home"
-                screenOptions={{
-                  headerShown: false,
-                  gestureEnabled: false,
-                }}
-            >
-              <Stack.Screen name="Home" component={Home} />
-              <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </Provider>
+      <Provider store={store}>
+        <NavigationContainer>
+          <StatusBar
+            backgroundColor="#fff"
+            barStyle={'dark-content'}
+          />
+          {this.state.loggedIn ? <Stack.Navigator
+            initialRouteName="LoggedIn"
+            screenOptions={{
+              headerShown: false,
+              gestureEnabled: false,
+            }}
+          >
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+          </Stack.Navigator> : <Tabs />}
+        </NavigationContainer>
+      </Provider>
     ) : (
-        <AppLoading
-            onFinish={() => this.setState({ isFontLoaded: true })}
-            onError={console.warn}
-        />
+      <AppLoading
+        onFinish={() => this.setState({ isFontLoaded: true })}
+        onError={console.warn}
+      />
     );
   }
 }

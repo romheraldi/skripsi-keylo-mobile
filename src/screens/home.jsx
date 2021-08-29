@@ -5,6 +5,7 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export class Home extends Component {
     constructor() {
@@ -77,7 +78,40 @@ export class Home extends Component {
                         </ScrollView>
                         <View style={styles.deviceList}>
                             <TouchableOpacity style={styles.deviceListItem}>
-                                <Text>Hai</Text>
+                                <View style={styles.iconBox}>
+                                    <MaterialIcons name="lock-outline" size={hp(3)} color="#666666" />
+                                </View>
+                                <Text style={styles.deviceListItemText}>Ruang Serba Guna</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.deviceListItemActive}>
+                                <View style={styles.iconBoxActive}>
+                                    <MaterialIcons name="lock-open" size={hp(3)} color="#FFF" />
+                                </View>
+                                <Text style={styles.deviceListItemTextActive}>Ruang Serba Guna</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.deviceListItem}>
+                                <View style={styles.iconBox}>
+                                    <MaterialIcons name="lock-outline" size={hp(3)} color="#666666" />
+                                </View>
+                                <Text style={styles.deviceListItemText}>Ruang Serba Guna</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.deviceListItem}>
+                                <View style={styles.iconBox}>
+                                    <MaterialIcons name="lock-outline" size={hp(3)} color="#666666" />
+                                </View>
+                                <Text style={styles.deviceListItemText}>Ruang Serba Guna</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.deviceListItem}>
+                                <View style={styles.iconBox}>
+                                    <MaterialIcons name="lock-outline" size={hp(3)} color="#666666" />
+                                </View>
+                                <Text style={styles.deviceListItemText}>Ruang Serba Guna</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.deviceListItem}>
+                                <View style={styles.iconBox}>
+                                    <MaterialIcons name="lock-outline" size={hp(3)} color="#666666" />
+                                </View>
+                                <Text style={styles.deviceListItemText}>Ruang Serba Guna</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -121,22 +155,69 @@ const styles = StyleSheet.create({
     },
     categoryItem: {
         fontFamily: "PoppinsRegular",
-        fontSize: wp(3),
+        fontSize: wp(4),
         color: "#666666"
     },
     deviceList: {
         paddingLeft: wp(10),
         paddingRight: wp(10),
-        marginTop: hp(5),
+        marginTop: hp(2),
         justifyContent: 'space-between',
         flexDirection: "row",
+        flexWrap: 'wrap',
+        flex: 1,
     },
     deviceListItem: {
-        width: wp(35),
-        height: wp(35),
-        backgroundColor: 'blue',
-        padding: wp(3)
+        width: wp(39),
+        height: wp(39),
+        backgroundColor: '#F2F2F2',
+        padding: wp(3),
+        borderRadius: 20,
+        borderWidth: wp(0.5),
+        borderColor: "#BDBDBD",
+        marginVertical: hp(0.7),
+    },
+    deviceListItemActive: {
+        width: wp(39),
+        height: wp(39),
+        backgroundColor: '#282C2F',
+        padding: wp(3),
+        borderRadius: 20,
+        marginVertical: hp(0.7),
+    },
+    deviceListItemText: {
+        fontFamily: "PoppinsSemiBold",
+        fontSize: wp(4),
+        color: "#666666"
+    },
+    deviceListItemTextActive: {
+        fontFamily: "PoppinsSemiBold",
+        fontSize: wp(4),
+        color: "#fff"
+    },
+    iconBox: {
+        justifyContent:'center',
+        alignItems: 'center',
+        height: hp(6),
+        width: wp(10),
+        borderColor: "#BDBDBD",
+        borderWidth: wp(0.5),
+        borderRadius: 10,
+        backgroundColor: "#FFFFFF",
+        marginBottom: hp(2),
+    },
+    iconBoxActive: {
+        justifyContent:'center',
+        alignItems: 'center',
+        height: hp(6),
+        width: wp(10),
+        borderColor: "#FFF",
+        borderWidth: wp(0.5),
+        borderRadius: 10,
+        backgroundColor: "#666666",
+        marginBottom: hp(2),
     }
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

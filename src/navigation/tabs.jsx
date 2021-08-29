@@ -3,6 +3,8 @@ import { Text, View } from 'react-native'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
 import Home from '../screens/home'
+import History from "../screens/history";
+import SettingNavigator from "../screens/settingNavigator";
 
 export default class Tabs extends Component {
   render() {
@@ -15,7 +17,7 @@ export default class Tabs extends Component {
         labeled={false}
         barStyle={{
           backgroundColor: '#282C2F',
-          position: 'absolute',
+          // position: 'absolute',
           overflow: 'hidden',
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
@@ -28,18 +30,18 @@ export default class Tabs extends Component {
               <MaterialIcons name="home" size={25} color={color} />
             ),
           }} />
-        <Tab.Screen name="History" component={Home}
+        <Tab.Screen name="History" component={History}
           options={{
             tabBarLabel: 'Riwayat',
             tabBarIcon: ({color}) => (
               <MaterialIcons name="settings-backup-restore" size={25} color={color} />
             ),
           }} />
-          <Tab.Screen name="Profile" component={Home}
+          <Tab.Screen name="Profile" component={SettingNavigator}
           options={{
             tabBarLabel: 'Profil',
             tabBarIcon: ({color}) => (
-              <MaterialIcons name="fingerprint" size={25} color={color} />
+              <MaterialIcons name="settings" size={25} color={color} />
             ),
           }} />
       </Tab.Navigator>
